@@ -2,7 +2,7 @@ import Course from '../models/Course.js';
 import mongoose from 'mongoose'; 
 
 /**===============================
- * @desc Get all published courses with filtering, search, pagination, and sorting
+ * @desc Get all published courses with filtering,
  * @route GET /api/courses
  * @access Public
  =================================*/
@@ -23,14 +23,14 @@ export const getCourses = async (req, res) => {
     query = query.find(filter);
 
     try {
-        // 3. Pagination & Sorting
+      
         const pageSize = parseInt(limit, 10);
         const skip = (parseInt(page, 10) - 1) * pageSize;
 
-        // Count total documents for pagination metadata
+     
         const totalCourses = await Course.countDocuments(filter);
         
-        // Apply sorting, skipping, limiting, and population
+        // Apply sorting, skipping, limiting, and population---for sch
         const courses = await query
             .sort(sort)
             .skip(skip)
@@ -123,8 +123,8 @@ export const updateCourse = async (req, res) => {
             req.params.id, 
             req.body, 
             { 
-                new: true, // Return the updated document
-                runValidators: true // Run schema validators on the update
+                new: true,
+                runValidators: true 
             }
         );
 
